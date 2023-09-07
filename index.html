@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link
+      rel="icon"
+      sizes="192x192"
+      href="favicon/android-chrome-192x192.png"
+    />
+    <link rel="icon" sizes="512x512" href="favicon/icon-512.png" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+
     <script src="script.js" defer></script>
     <title>Animated clock</title>
   </head>
@@ -50,13 +60,17 @@
       padding: 5px 8px;
     }
 
-    @media (max-width: 822px) {
+    @media (max-width: 500px) {
       h1 {
         font-size: 5vw;
       }
       .container {
         display: block;
-        width: 50vw;
+        /* width: 50vw; */
+      }
+      canvas {
+        width: 90vw;
+        height: 90vw;
       }
     }
   </style>

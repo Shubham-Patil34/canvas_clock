@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js" defer></script>
+    <title>Animated clock</title>
+  </head>
+  <style>
+    /* Apply some basic styles to the columns */
+    .container {
+      display: flex;
+    }
+
+    /* Style the left column (containing the canvas) */
+    .left-column {
+      flex: 1;
+      padding: 2vw;
+      background-color: #f0f0f0;
+    }
+
+    /* Style the right column (containing the form) */
+    .right-column {
+      flex: 1;
+      padding: 2vw;
+      background-color: #b6d7f5;
+    }
+
+    /* Style the canvas */
+    canvas {
+      width: 45vw;
+      height: 45vw;
+      border: 1px solid #000;
+    }
+
+    /* Style the form */
+    form {
+      width: 100%;
+      max-width: 400px; /* Adjust the maximum width as needed */
+      margin: 0 auto;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #000;
+      border-radius: 5px;
+      color: #fff;
+      padding: 5px 8px;
+    }
+
+    @media (max-width: 822px) {
+      h1 {
+        font-size: 5vw;
+      }
+      .container {
+        display: block;
+        width: 50vw;
+      }
+    }
+  </style>
+  <body>
+    <h1>Animated clock</h1>
+    <div class="container">
+      <div class="left-column">
+        <canvas id="my-canvas" width="500px" height="500px"></canvas>
+      </div>
+      <div class="right-column">
+        <form>
+          <h2>Clock Style</h2>
+          <label>Face Color: </label
+          ><input
+            type="color"
+            name="faceColor"
+            id="faceColor"
+            value="#f4e4d4"
+          /><br /><br />
+          <label>border Color: </label
+          ><input
+            type="color"
+            name="borderColor"
+            id="borderColor"
+            value="#800000"
+          /><br /><br />
+          <label>Number lines Color: </label
+          ><input
+            type="color"
+            name="numLineColor"
+            id="numLineColor"
+            value="#000000"
+          /><br /><br />
+          <label>Hands Color: </label
+          ><input
+            type="color"
+            name="handsColor"
+            id="handsColor"
+            value="#000000"
+          /><br /><br />
+          <button id="saveButton">Save the Time</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

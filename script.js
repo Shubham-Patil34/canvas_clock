@@ -1,10 +1,19 @@
-// const global = {
+// const globalColors = {
 //   faceColor: '#f4e4d4',
 //   borderColor: '#800000',
 //   numLineColor: '#000000',
 //   handsColor: '#00000',
 // };
-// localStorage.setItem('global', JSON.stringify(global));
+// localStorage.setItem('globalColors', JSON.stringify(globalColors));
+
+if (localStorage.getItem('globalColors') === null) {
+  let colors = {};
+  localStorage.setItem('globalColors', JSON.stringify(colors));
+  setColor('faceColor', document.querySelector('#faceColor').value);
+  setColor('borderColor', document.querySelector('#borderColor').value);
+  setColor('numLineColor', document.querySelector('#numLineColor').value);
+  setColor('handsColor', document.querySelector('#handsColor').value);
+}
 
 document.querySelector('#faceColor').value = getColor('faceColor');
 document.querySelector('#borderColor').value = getColor('borderColor');
@@ -12,14 +21,14 @@ document.querySelector('#numLineColor').value = getColor('numLineColor');
 document.querySelector('#handsColor').value = getColor('handsColor');
 
 function getColor(key) {
-  let colors = JSON.parse(localStorage.getItem('global'));
+  let colors = JSON.parse(localStorage.getItem('globalColors'));
   return colors[key];
 }
 
 function setColor(key, value) {
-  let colors = JSON.parse(localStorage.getItem('global'));
+  let colors = JSON.parse(localStorage.getItem('globalColors'));
   colors[key] = value;
-  localStorage.setItem('global', JSON.stringify(colors));
+  localStorage.setItem('globalColors', JSON.stringify(colors));
 }
 
 function clock() {
@@ -40,7 +49,7 @@ function clock() {
 
   // Set default styles
   // ctx.strokeStyle = getColor('handsColor');
-  // ctx.fillStyle = global.faceColor;
+  // ctx.fillStyle = globalColors.faceColor;
   ctx.strokeStyle = getColor('handsColor');
   ctx.fillStyle = getColor('faceColor');
   ctx.lineWidth = 5;
@@ -50,7 +59,7 @@ function clock() {
   ctx.save();
   ctx.beginPath();
   ctx.lineWidth = 16;
-  // ctx.strokeStyle = global.borderColor;
+  // ctx.strokeStyle = globalColors.borderColor;
   ctx.strokeStyle = getColor('borderColor');
   ctx.arc(0, 0, 142, 0, Math.PI * 2, true);
   ctx.stroke();
@@ -59,7 +68,7 @@ function clock() {
 
   // Draw hour marks
   ctx.save();
-  // ctx.strokeStyle = global.numLineColor;
+  // ctx.strokeStyle = globalColors.numLineColor;
   ctx.strokeStyle = getColor('numLineColor');
   ctx.lineWidth = 5;
   for (let i = 1; i <= 12; i++) {
@@ -145,25 +154,25 @@ requestAnimationFrame(clock);
 //   .querySelector('#faceColor')
 //   .addEventListener(
 //     'change',
-//     (event) => (global.faceColor = event.target.value)
+//     (event) => (globalColors.faceColor = event.target.value)
 //   );
 // document
 //   .querySelector('#borderColor')
 //   .addEventListener(
 //     'change',
-//     (event) => (global.borderColor = event.target.value)
+//     (event) => (globalColors.borderColor = event.target.value)
 //   );
 // document
 //   .querySelector('#numLineColor')
 //   .addEventListener(
 //     'change',
-//     (event) => (global.numLineColor = event.target.value)
+//     (event) => (globalColors.numLineColor = event.target.value)
 //   );
 // document
 //   .querySelector('#handsColor')
 //   .addEventListener(
 //     'change',
-//     (event) => (global.handsColor = event.target.value)
+//     (event) => (globalColors.handsColor = event.target.value)
 //   );
 
 const canvas = document.getElementById('my-canvas');

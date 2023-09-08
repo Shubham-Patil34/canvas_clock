@@ -6,6 +6,11 @@
 // };
 // localStorage.setItem('globalColors', JSON.stringify(globalColors));
 
+const canvas = document.getElementById('my-canvas');
+const saveButton = document.getElementById('saveButton');
+const resetButton = document.getElementById('resetButton');
+
+// Store default style to localstorage
 if (localStorage.getItem('globalColors') === null) {
   let colors = {};
   localStorage.setItem('globalColors', JSON.stringify(colors));
@@ -15,27 +20,31 @@ if (localStorage.getItem('globalColors') === null) {
   setColor('handsColor', document.querySelector('#handsColor').value);
 }
 
+// Persist last style by storing color values in localstorage
 document.querySelector('#faceColor').value = getColor('faceColor');
 document.querySelector('#borderColor').value = getColor('borderColor');
 document.querySelector('#numLineColor').value = getColor('numLineColor');
 document.querySelector('#handsColor').value = getColor('handsColor');
 
+// Get color for a key from localstorage
 function getColor(key) {
   let colors = JSON.parse(localStorage.getItem('globalColors'));
   return colors[key];
 }
 
+// Set color for a key in localstorage
 function setColor(key, value) {
   let colors = JSON.parse(localStorage.getItem('globalColors'));
   colors[key] = value;
   localStorage.setItem('globalColors', JSON.stringify(colors));
 }
 
+// Clock canvas
 function clock() {
   const now = new Date();
-  const canvas = document.querySelector('#my-canvas');
   const ctx = canvas.getContext('2d');
 
+  // Update clock style
   setColor('faceColor', document.querySelector('#faceColor').value);
   setColor('borderColor', document.querySelector('#borderColor').value);
   setColor('numLineColor', document.querySelector('#numLineColor').value);
@@ -150,6 +159,8 @@ function clock() {
 }
 
 requestAnimationFrame(clock);
+
+// Initial code used to update clock style
 // document
 //   .querySelector('#faceColor')
 //   .addEventListener(
@@ -175,13 +186,19 @@ requestAnimationFrame(clock);
 //     (event) => (globalColors.handsColor = event.target.value)
 //   );
 
-const canvas = document.getElementById('my-canvas');
-const saveButton = document.getElementById('saveButton');
-
+// Save the time as clock snapshot
 saveButton.addEventListener('click', function () {
   const canvasImage = canvas.toDataURL(); // Convert canvas content to a data URL
   const a = document.createElement('a');
   a.href = canvasImage;
   a.download = 'clock.png'; // Specify the image file name
   a.click();
+});
+
+// Reset the clock style to default
+resetButton.addEventListener('click', function () {
+  document.querySelector('#faceColor').value = '#f4e4d4';
+  document.querySelector('#borderColor').value = '#800000';
+  document.querySelector('#numLineColor').value = '#000000';
+  document.querySelector('#handsColor').value = '#000000';
 });
